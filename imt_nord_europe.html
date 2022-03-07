@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Accueil</title>
+<title>IMT Nord Europe</title>
 <style>
 
 body {
@@ -18,6 +18,22 @@ img {
   margin-left: 25%;
   margin-right: auto;
   margin-bottom: 5%;
+}
+
+.LGIMT{
+  float: right;
+  margin-right: 24%;
+  height: 59px;
+}
+
+.IMGIMT{
+  height: 35px;
+  border-radius: 0%;
+  margin-top: 0%;
+  margin-left: 0%;
+  margin-right: 0%;
+  margin-bottom: 0%;
+  padding: 0px 5px 0px 0px;
 }
 
 form {
@@ -109,6 +125,8 @@ li.dropdown {
 
 li.contact {
   float: right;
+  pointer-events: none;
+  opacity: 0;
 }
 
 .dropdown-content {
@@ -208,6 +226,24 @@ li.dropdown {
 li.contact {
   float: right;
   margin-right: 0%;
+  pointer-events: all;
+  opacity: 1;
+}
+
+.LGIMT{
+  float: right;
+  margin-right: 0%;
+  height: 0px;
+}
+
+.IMGIMT{
+  height: 0px;
+  border-radius: 0%;
+  margin-top: 0%;
+  margin-left: 0%;
+  margin-right: 0%;
+  margin-bottom: 0%;
+  padding: 0px 0px;
 }
 
 .dropdown-content {
@@ -241,8 +277,20 @@ li.contact {
 <body>
 
 <article>
-  <img src="Photo.jfif" alt="Cédric PRAST" width=50% height=auto/>
-  <h2>Envoyé !</h2>
+  <section>
+    <img src="Photo.jfif" alt="Cédric PRAST" width=50% height=auto/>
+    <form action="https://formsubmit.co/2c6ead6fae41352d74c68ced73649cfe" method="POST" enctype="multipart/form-data">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_subject" value="Page CV">
+      <input type="text" name="Nom" placeholder="Nom" size="25%" style="margin-bottom:4px;" required><br>
+      <input type="hidden" name="_next" value="#">
+      <input type="email" name="Adresse Mail" placeholder="Adresse Mail" size="25%" style="margin-bottom:4px;" required><br><br>
+      <input type="hidden" name="_next" value="https://zhongguoda.github.io/sent.html">
+      <input type="file" id="someId" name="Pièce jointe" accept="application/pdf" style="margin-bottom:4px;"><br>
+      <textarea type="text" name="Message" placeholder="Message" rows="4" cols="30" required></textarea><br>
+      <button type="submit">Envoyer</button>
+    </form>
+  </section>
 </article>
 
 <ul>
@@ -262,21 +310,32 @@ li.contact {
       <a href="cmc.html">Centre de Méthode Champenoise</a>
     </div>
   </li>
+  <li class="LGIMT"><a href="https://imt-nord-europe.fr/"><img src="Logo_IMT_Nord_Europe.png" class="IMGIMT" alt="Logo IMT Nord-Europe"/></a></li>
   <li class="contact"><a href="contact.html">Contact</a></li>
 </ul>
 
-<h1>Curriculum vitae Cédric PRAST</h1>
+<script>
+var file = document.getElementById('someId');
 
-<div>Étudiant en M1 à l'Institut Mines-Télécom Nord Europe, je suis passionné par les nouvelles technologies.
-  J'aime créer et mener des projets, démontrer des problèmes mathématiques et faire des expériences scientifiques.
-  Mes études me donnent des bases en programmation, en électronique et en physique-chimie.
-  J'ai la double nationnalité française-allemande.
-  J'aime voyager et découvrir de nouvelles cultures.
-  J'ai effectué un semestre d'échange à l'UQAM (Université du Québec à Montréal) qui m'a permis d'être immergé durant 5 mois dans la culture québecoise.
-  Mes stages m'ont permis d'acquérir de l'expérience dans des entreprises de plus ou moins grandes tailles. J'ai pu mener des projets en autonomie.
-  Je recherche un stage assistant ingénieur en informatique à partir d'avril 2022 pour une durée de 4 à 5 mois.
-  Je suis particulièrement intéressé par des entreprises innovantes dans les nouvelles technologies.
-  N'hésitez pas à parcourir mon site et à me contacter si mon profil vous intéresse.
+file.onchange = function(e) {
+  var files = e.currentTarget.files;
+  var ext = this.value.match(/\.([^\.]+)$/)[1];
+    switch (ext) {
+    case 'pdf':
+      break;
+    default:
+      alert('PDF Seulement !');
+      this.value = '';
+  }
+};
+</script> 
+
+<h1>
+  Mon parcours à l'Institut Mines-Télécom Nord-Europe
+</h1>
+
+<div>
+L'IMT c'est bien.
 </div>
 
 </body>
