@@ -1,9 +1,14 @@
 <?php
+$title = "UQAM";
+$img_src = "Logo_UQAM.png";
+$url = "https://uqam.ca/";
+
 require_once('template_header.php');
-?>
-<?php
 require_once('template_menu.php');
 ?>
+<script>
+    <?php require_once("Script.js");?>
+</script>
 
 <h1>
   Mon semestre académique à l'Université du Québec à Montréal
