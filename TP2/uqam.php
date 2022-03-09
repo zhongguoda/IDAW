@@ -1,11 +1,9 @@
 <?php
 require_once('template_header.php');
 ?>
-
-<ul class="rightMenu">
-  <li class="LGIMT"><a href="https://uqam.ca/" target="_blank"><img src="Logo_UQAM.png" class="IMGIMT" alt="Logo IMT Nord-Europe"/></a></li>
-  <li class="contact"><a href="contact.php">Contact</a></li>
-</ul>
+<?php
+require_once('template_menu.php');
+?>
 
 <h1>
   Mon semestre académique à l'Université du Québec à Montréal
@@ -22,5 +20,6 @@ require_once('template_header.php');
   <li class="COURS">Construction et maintenance de logiciels (INF3135)</li><br>
 </div>
 
-</body>
-</html>
+<?php
+require_once('template_footer.php');
+?>

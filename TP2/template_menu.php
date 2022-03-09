@@ -1,17 +1,7 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="Style.css" type="text/css"
-media="screen" title="default" charset="utf-8" />
-</head>
 <body>
-
-
-
-<article>
+<article class="Menu_contact">
   <section>
-    <img src="Photo.jfif" alt="Cédric PRAST" width=50% height=auto/>
+    <img src="Photo.jfif" alt="Cédric PRAST" width=50% height=auto class="Photo"/>
     <form action="https://formsubmit.co/2c6ead6fae41352d74c68ced73649cfe" method="POST" enctype="multipart/form-data">
       <input type="hidden" name="_captcha" value="false">
       <input type="hidden" name="_subject" value="Page CV">
@@ -26,9 +16,8 @@ media="screen" title="default" charset="utf-8" />
   </section>
 </article>
 
-<nav>
-<ul>
-  <li><a href="index.php">Accueil</a></li>
+<ul class="nav">
+  <li class="dropdown"><a href="index.php">Accueil</a></li>
   <li class="dropdown">
     <a href="#" class="dropbtn">Formations</a>
     <div class="dropdown-content">
@@ -45,4 +34,10 @@ media="screen" title="default" charset="utf-8" />
     </div>
   </li>
 </ul>
-</nav>
+
+<ul class="rightMenuL">
+  <li class="Cadre_Logo"><a href="https://uqam.ca/" target="_blank"><img src="Logo_UQAM.png" class="Logo" alt="Logo UQAM"/></a></li>
+</ul>
+<ul class="rightMenuC">
+  <li class="contact"><a href="contact.php">Contact</a></li>
+</ul>
