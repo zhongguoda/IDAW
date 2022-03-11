@@ -1,7 +1,3 @@
-<?php
-require_once('template_header.php');
-?>
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -85,7 +81,7 @@ ul {
   position: fixed;
   top: 0;
   font-weight: bold;
-  font-size: 1.5rem;
+  font-size: 2rem;
 }
 
 li {
@@ -123,7 +119,7 @@ li.contact {
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
   font-weight: normal;
-  font-size: 0.95rem;
+  font-size: 1.5rem;
 }
 
 .dropdown-content a {
@@ -245,7 +241,7 @@ li.contact {
 </article>
 
 <ul>
-  <li><a href="index.php">Accueil</a></li>
+  <li><a href="accueil.php">Accueil</a></li>
   <li class="dropdown">
     <a href="#" class="dropbtn">Formations</a>
     <div class="dropdown-content">

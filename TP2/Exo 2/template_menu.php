@@ -16,8 +16,27 @@
   </section>
 </article>
 
+<?php
+function renderMenuToHTML($currentPageId) {
+  // un tableau qui d\'efinit la structure du site
+  $mymenu = array(
+  // idPage titre
+  'index' => 'Accueil',
+  'cmc' => 'cmc');
+  
+echo '<ul class="nav">';
+
+  foreach($mymenu as $pageId => $pageParameters) {
+    echo '<li class="dropdown"><a href="accueil.php">';
+    echo $pageParameters;
+    echo '</a></li>'; 
+  }
+}
+echo '</ul>';
+?>
+
 <ul class="nav">
-  <li class="dropdown"><a href="index.php">Accueil</a></li>
+  <li class="dropdown"><a href="accueil.php">Accueil</a></li>
   <li class="dropdown">
     <a href="#" class="dropbtn">Formations</a>
     <div class="dropdown-content">
@@ -35,9 +54,23 @@
   </li>
 </ul>
 
+
 <ul class="rightMenuL">
-  <li class="Cadre_Logo"><a href="<?= $url ?>" target="_blank"><img src="<?= $img_src ?>" class="Logo" alt="Logo UQAM"/></a></li>
+<li class="Cadre_Logo">
+<?php
+if ($url != "" && $img_src != ""):
+echo '<a href=';
+echo $url;
+echo ' target="_blank"><img src=';
+echo $img_src;
+echo ' class="Logo" alt="Logo UQAM"/></a>';
+else:
+echo '<a href="#" style="pointer-events: none"><img src="Logo_UQAM.png" style="opacity: 0" class="Logo" alt="Logo UQAM"/></a>';
+endif;
+?>
+</li>
 </ul>
+
 <ul class="rightMenuC">
   <li class="contact"><a href="contact.php">Contact</a></li>
 </ul>
