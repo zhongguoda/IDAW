@@ -5,7 +5,7 @@ $url = "";
 
 require_once('template_header.php');
 require_once('template_menu.php');
-renderMenuToHTML('cmc');
+//renderMenuToHTML('cmc');
 ?>
 <script>
     <?php require_once("Script.js");?>

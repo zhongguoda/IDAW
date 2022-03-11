@@ -5,7 +5,7 @@ $url = "http://cmc-station-oenologique.fr/";
 
 require_once('template_header.php');
 require_once('template_menu.php');
-renderMenuToHTML('cmc');
+//renderMenuToHTML('cmc');
 ?>
 
 

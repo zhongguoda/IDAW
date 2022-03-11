@@ -16,7 +16,8 @@
   </section>
 </article>
 
-<?php
+<!--
+
 function renderMenuToHTML($currentPageId) {
   // un tableau qui d\'efinit la structure du site
   $mymenu = array(
@@ -33,7 +34,8 @@ echo '<ul class="nav">';
   }
 }
 echo '</ul>';
-?>
+
+-->
 
 <ul class="nav">
   <li class="dropdown"><a href="accueil.php">Accueil</a></li>
