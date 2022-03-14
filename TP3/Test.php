@@ -1,5 +1,5 @@
 <?php
-$title = "Menu";
+$title = "Test";
 require_once('template_header.php');
 
 session_start();
@@ -49,9 +49,9 @@ echo $errorText;
 } else {
 $sql = "SELECT pseudo FROM Utilisateur WHERE login='$tryLogin' AND password='$tryPwd'";
 $result = $conn->query($sql);
-echo "<h1>Bienvenu ".$result->fetch_assoc()["pseudo"]."</h1>";
+echo "<h1>Bonjour ".$result->fetch_assoc()["pseudo"]."</h1>";
 echo '<form id="login_form" action="login.php" method="POST"><table><td><input type="submit" value="Se déconnecter..." /></td></table></form>';
-echo '<a href="Test.php">Test</a>';
+echo '<a href="connected.php">Menu</a>';
 }
 
 $conn->close();
