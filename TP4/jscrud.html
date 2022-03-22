@@ -19,94 +19,177 @@ margin-bottom: 100px;
 </style>
 </head>
 <body>
-<table class="table">
-<thead>
-<tr>
-<th scope="col">Nom</th>
-<th scope="col">Prenom</th>
-<th scope="col">Date de naissance</th>
-<th scope="col">Aime le cours Web</th>
-<th scope="col">Remarques</th>
-<th scope="col">CRUD</th>
-</tr>
-</thead>
-<tbody id="studentsTableBody">
-</tbody>
-</table>
-<form id="addStudentForm" action="" onsubmit="onFormSubmit();">
-<div class="form-group row">
-<label for="inputNom" class="col-sm-2 col-form-label">Nom*</label>
-<div class="col-sm-3">
-<input type="text" class="form-control" id="inputNom" >
-</div>
-</div>
-<div class="form-group row">
-<label for="inputPrenom" class="col-sm-2 col-form-label">Prenom*</label>
-<div class="col-sm-3">
-<input type="text" class="form-control" id="inputPrenom" >
-</div>
-</div>
-<div class="form-group row">
-<label for="inputDate" class="col-sm-2 col-form-label">Date de naissance*</label>
-<div class="col-sm-3">
-<input type="date" class="form-control" id="inputDate" >
-</div>
-</div>
-<div class="form-group row">
-<label for="inputAime" class="col-sm-2 col-form-label">Aime le cours Web*</label>
-<div class="col-sm-3">
-<input type="checkbox" class="form-control" id="inputAime" >
-</div>
-</div>
-<div class="form-group row">
-<label for="inputRemarques" class="col-sm-2 col-form-label">Remarques*</label>
-<div class="col-sm-3">
-<input type="text" class="form-control" id="inputRemarques" >
-</div>
-</div>
-<br>
-<div class="form-group row">
-<span class="col-sm-2"></span>
-<div class="col-sm-2">
-<button type="submit" class="btn btn-primary form-control">Submit</button>
-</div>
-</div>
-</form>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">id</th>
+          <th scope="col">Nom</th>
+          <th scope="col">Prenom</th>
+          <th scope="col">Date de naissance</th>
+          <th scope="col">Aime le cours Web</th>
+          <th scope="col">Remarques</th>
+          <th scope="col">CRUD</th>
+        </tr>
+      </thead>
+      <tbody id="studentsTableBody"></tbody>
+    </table>
+    <form id="addStudentForm" action="" onsubmit="onFormSubmit(0);">
+      <div class="form-group row">
+        <label for="inputNom" class="col-sm-2 col-form-label">Nom*</label>
+        <div class="col-sm-3">
+          <input type="text" class="form-control" id="inputNom" />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="inputPrenom" class="col-sm-2 col-form-label">Prenom</label>
+        <div class="col-sm-3">
+          <input type="text" class="form-control" id="inputPrenom" />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="inputDate" class="col-sm-2 col-form-label"
+          >Date de naissance</label
+        >
+        <div class="col-sm-3">
+          <input type="date" class="form-control" id="inputDate" />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="inputLike" class="col-sm-2 col-form-label"
+          >Aime le cours Web</label
+        >
+        <div class="col-sm-3">
+          <input type="checkbox" class="form-control" id="inputLike" />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="inputRem" class="col-sm-2 col-form-label">Remarques</label>
+        <div class="col-sm-3">
+          <input type="text" class="form-control" id="inputRem" />
+        </div>
+      </div>
+      <div class="form-group row">
+        <span class="col-sm-2"></span>
+        <div id="divBtn">
+          <button
+            id="subBtn"
+            type="submit"
+            class="btn btn-primary form-control"
+          >
+            Submit
+          </button>
+        </div>
+      </div>
+    </form>
 <script>
 
-function editR(x) {
-let nom = $("#inputNom").val();
-let prenom = $("#inputPrenom").val();
-let date = $("#inputDate").val();
-let aime = $("#inputAime").prop('checked');
-let remarques = $("#inputRemarques").val();
-if (`${nom.length}` > 0){
-    var row = x.parentNode.parentNode;
-    row.remove();
-    $("#studentsTableBody").append(`<tr><td>${nom}</td><td>${prenom}</td><td>${date}</td><td>${aime}</td><td>${remarques}</td><td><button class="edit btn btn-sm btn-outline-success" onclick="editR(this)">Modifier</button>    <button class="delete btn btn-sm btn-outline-danger" onclick="deleteR(this)">Supprimer</button></td></tr>`);
-} else {
-    alert('Remplissez la partie "Nom"');
+const Person = {
+  String,
+  String,
+  Date,
+  Boolean,
+  String,
+};
+var global = 0;
+var edit = false;
+
+function toPerson(nom, prenom, date, like, rem) {
+  let guy = Object.create(Person);
+  guy.nom = nom;
+  guy.prenom = prenom;
+  guy.date = date;
+  guy.like = like;
+  guy.rem = rem;
+  return guy;
 }
+var list = new Array();
+
+function formattedDate(d = new Date()) {
+  let month = String(d.getMonth() + 1);
+  let day = String(d.getDate());
+  const year = String(d.getFullYear());
+
+  if (month.length < 2) month = "0" + month;
+  if (day.length < 2) day = "0" + day;
+
+  return `${year}-${month}-${day}`;
 }
 
-function deleteR(x) {
-var row = x.parentNode.parentNode;
-row.remove();
+function getForm() {
+  return toPerson(
+    $("#inputNom").val(),
+    $("#inputPrenom").val(),
+    $("#inputDate").val(),
+    document.getElementById("inputLike").checked,
+    $("#inputRem").val()
+  );
 }
 
 function onFormSubmit() {
-// prevent the form to be sent to the server
-event.preventDefault();
-let nom = $("#inputNom").val();
-let prenom = $("#inputPrenom").val();
-let date = $("#inputDate").val();
-let aime = $("#inputAime").prop('checked');
-let remarques = $("#inputRemarques").val();
-if (`${nom.length}` > 0){
-    $("#studentsTableBody").append(`<tr><td>${nom}</td><td>${prenom}</td><td>${date}</td><td>${aime}</td><td>${remarques}</td><td><button class="edit btn btn-sm btn-outline-success" onclick="editR(this)">Modifier</button>    <button class="delete btn btn-sm btn-outline-danger" onclick="deleteR(this)">Supprimer</button></td></tr>`);
-} else {
-    alert('Remplissez la partie "Nom"');
+  event.preventDefault();
+  if (edit === false) {
+    addRow(getForm());
+  } else {
+    const person = getForm();
+    list[global] = person;
+    displayTab();
+    edit = false;
+  }
 }
+
+function displayTab() {
+  $("#studentsTableBody tr").remove();
+  for (let i = 0; i < list.length; i++) {
+    $("#studentsTableBody").append(
+      `<tr id="row${i}">
+                    <td id="id${i}">${i}</td>
+                    <td id="nom${i}">${list[i].nom}</td>
+                    <td id="prenom${i}">${list[i].prenom}</td>
+                    <td id="date${i}">${list[i].date} </td>
+                    <td id="like${i}">${list[i].like ? "Oui" : "Non"} </td>
+                    <td id="rem${i}">${list[i].rem} </td>
+                    <td>
+                        <button class="edit btn btn-sm btn-outline-success" onclick="updateRow(${i})">Update</button>
+                        <button class="delete btn btn-sm btn-outline-danger" onclick="deleteRow(this, ${i})">Delete</button>
+                    </td>
+                </tr>`
+    );
+  }
+}
+
+function addRow(person) {
+  if (person.nom === "") {
+    alert("Nom invalide");
+  } else {
+    list.push(person);
+  }
+  displayTab();
+}
+
+function deleteRow(btn, index) {
+  var row = btn.parentNode.parentNode;
+  row.parentNode.removeChild(row);
+  if (index > -1) {
+    list.splice(index, 1);
+  }
+}
+
+function updateRow(i) {
+  const element = document.getElementById(`row${i}`);
+  for (let j = 0; j < list.length; j++) {
+    if (i === j) {
+      element.style.background = "lightblue";
+    } else {
+      document.getElementById(`row${j}`).style.background = "none";
+    }
+  }
+
+  document.getElementById("inputNom").value = list[i].nom;
+  document.getElementById("inputPrenom").value = list[i].prenom;
+  document.getElementById("inputRem").value = list[i].rem;
+
+  edit = true;
+  global = i;
 }
 </script>
 </body>
