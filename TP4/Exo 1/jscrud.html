@@ -186,6 +186,8 @@ function updateRow(i) {
 
   document.getElementById("inputNom").value = list[i].nom;
   document.getElementById("inputPrenom").value = list[i].prenom;
+  document.getElementById("inputDate").value = list[i].date;
+  document.getElementById("inputLike").checked = list[i].like;
   document.getElementById("inputRem").value = list[i].rem;
 
   edit = true;
